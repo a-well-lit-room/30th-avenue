@@ -1,43 +1,107 @@
-// load videos from a json file called "videos.json"
-async function loadVideos() {
+// how to make it so that the videos play based on Astoria time, not local time?
 
-    // get the container where we will put the videos
-    const container = document.querySelector(".container")
+// format dates to just include the time on a 24-hour clock
+const clock_format = new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hourCycle: "h24",
+    timeZone: "America/New_York"
+});
 
-    // fetch the json file and parse it into an array of video urls
-    const response = await fetch("videos.json");
-    let vids = await response.json();
+// create a video player
+async function loadVideos(cued_file, timecode) {
 
-    let videoCount = 0;
-    for (let v of vids) {
-        videoCount++;
-    }
-    console.log("videoCount = " + videoCount);
-    randomVideo = Math.floor(Math.random() * videoCount);
-    console.log("randomVideo = " + randomVideo);
+    // find container
+    const container = document.querySelector(".container");
     
     // create a video element
     const player = document.createElement("video");
 
-    // player.classList.add("bg")
+    // generate random id
+    function getRandomId(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    };
+    randomId = getRandomId(1000,9999);
+    player.id = randomId;
 
-    // pick a random video out of the hat
-    player.src = vids[randomVideo];
+    // get the filename of the video
+    player.src = cued_file;
 
-    // loop the video
-    player.loop = true;
+    // set to autoplay
+    player.autoplay = true;
+
+    // don't loop the video
+    player.loop = false;
 
     // mute the video (playing the video automatically doesn't work without this)
     player.muted = true;
 
-    player.autoplay = true;
-
     // needed for ios
     player.playsinline = true;
 
-    // add the video to our container element
+    // set max-width if needed
+    // player.style.maxWidth = "512px";
+
+    // give the video random coordinates
+    // }; // generate random float between -1 and 1
+    function getRandomVal(min, max) {
+        return Math.random() * (max - min) + min;
+    } // get random float, but allows a custom range
+    top_spacing = String(`${getRandomVal(-10,30)}vh`); // set range for top spacing
+    side_spacing = String(`${getRandomVal(-15, 45)}vw`); // set range for side spacing
+    player.style.position = "absolute";
+    player.style.top = top_spacing;
+    player.style.left = side_spacing;
+
+    // call function to remove element when ended
+    player.setAttribute("onended", `remove_video("${randomId}")`);
+
+    // throw that video in the container!
     container.appendChild(player);
 
-}
+};
 
-loadVideos();
+// match up video recording times with current time
+async function get_video_times() {
+
+    // get current time
+    const timer = clock_format.format(new Date);
+    console.log(`timer: ${timer}`);
+
+    // store data from json file as obj
+    const video_metadata = await fetch("./video_metadata.json");
+    let obj = await video_metadata.json();
+
+    // cycle through objects in json, and check if the times match the current time
+    for (let i = 0; i < obj.length; i++) {
+        let video_file = obj[i];
+        let video_title = video_file.video;
+        // format the date in the metadata to match format of timer
+        let recording_time = clock_format.format(new Date(video_file.creation_date));
+
+        // if the time matches, play the video
+        if (recording_time == timer) {
+            console.log(`the recording time of ${video_file.video} matches the current time`);
+            loadVideos(video_title, recording_time);
+        };
+    };
+
+    // restart the function every second
+    setTimeout(get_video_times, 1000);
+};
+
+// remove video element when it ends
+async function remove_video(playerId) {
+    document.getElementById(playerId).remove();
+};
+
+get_video_times();
+
+// this is a temporary solution to force playback of sound
+async function soundOn() {
+    document.querySelector("video").muted = false;
+    document.querySelector("button").remove();
+}
