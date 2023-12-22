@@ -2,8 +2,7 @@ import sys # this allows me to access command line arguments
 import argparse # this allows me to parse arguments
 import os # this allows me to do stuff with searching directories
 from os import listdir, makedirs
-from os.path import isfile, isdir
-import moviepy.editor as mp # this allows me to do the actual resizing
+from os.path import isdir
 from subprocess import run
 import json
 
