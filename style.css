@@ -10,6 +10,17 @@ a {
 
 }
 
+/* style the pop-up disclaimer text */
+#disclaimer {
+    width: 90vw;
+    max-width: 800px;
+    position: absolute;
+    top: 60vh;
+    z-index: 1;
+    padding: 1%;
+    background-color: black;
+}
+
 /* light theme */
 @media (prefers-color-scheme: light) {
     body {
@@ -19,6 +30,10 @@ a {
 
     a {
         color: black;
+    }
+
+    #disclaimer {
+        background-color: whitesmoke;
     }
 }
 
@@ -68,14 +83,4 @@ video.bg {
     margin: 0 auto;
     width: 100vw;
     z-index: -1;
-}
-
-#disclaimer {
-    width: 90vw;
-    max-width: 800px;
-    position: absolute;
-    top: 60vh;
-    z-index: 1;
-    padding: 1%;
-    background-color: whitesmoke;
 }

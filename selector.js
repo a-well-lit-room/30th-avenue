@@ -100,8 +100,7 @@ async function remove_video(playerId) {
 
 get_video_times();
 
-// this is a temporary solution to force playback of sound
-async function soundOn() {
-    document.querySelector("video").muted = false;
-    document.querySelector("button").remove();
-}
+// remove disclaimer box after set interval
+setTimeout(function removeDisclaimer() {
+    document.getElementById("disclaimer").remove();
+}, 30000);
