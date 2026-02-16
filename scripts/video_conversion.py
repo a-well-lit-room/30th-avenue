@@ -104,6 +104,7 @@ for v in videos:
         run(
             [
                 "ffmpeg",
+                "-hide_banner",
                 "-i",
                 full_path_of_source_file,
                 "-movflags",

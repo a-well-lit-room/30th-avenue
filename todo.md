@@ -1,0 +1,6 @@
+- [x] make still based on IMG_0708.MOV
+- [x] go thru remaining json lists (stopped at IMG_0708.MOV)
+- [ ] make sure the videos aren't already uploaded before processing them
+- [ ] organize files and make it match github structure
+- [ ] organize scripts!!!
+- [ ] download remaining 2025 and 2025 videos
