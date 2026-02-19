@@ -10,6 +10,11 @@
         "location": null
     },
     {
+        "video": "./vid/IMG_4497.webm",
+        "creation_date": "2025-01-26T18:03:48.000000Z",
+        "location": null
+    },
+    {
         "video": "./vid/IMG_0092.webm",
         "creation_date": "2023-10-27T03:00:47.000000Z",
         "location": null
@@ -95,6 +100,11 @@
         "location": "+40.7814-73.9087/"
     },
     {
+        "video": "./vid/IMG_2162.webm",
+        "creation_date": "2024-07-01T00:40:56.000000Z",
+        "location": null
+    },
+    {
         "video": "./vid/IMG_0132.webm",
         "creation_date": "2023-11-05T21:46:35.000000Z",
         "location": null
@@ -165,6 +175,11 @@
         "location": "+40.7663-73.9201/"
     },
     {
+        "video": "./vid/IMG_3209.webm",
+        "creation_date": "2024-09-27T23:32:26.000000Z",
+        "location": null
+    },
+    {
         "video": "./vid/IMG_0130.webm",
         "creation_date": "2023-11-05T21:40:43.000000Z",
         "location": null
@@ -212,6 +227,11 @@
     {
         "video": "./vid/IMG_0078.webm",
         "creation_date": "2023-10-25T01:40:06.000000Z",
+        "location": null
+    },
+    {
+        "video": "./vid/IMG_4892.webm",
+        "creation_date": "2025-03-22T15:37:44.000000Z",
         "location": null
     },
     {
@@ -302,6 +322,11 @@
     {
         "video": "./vid/IMG_0642.webm",
         "creation_date": "2024-01-04T16:26:28.000000Z",
+        "location": null
+    },
+    {
+        "video": "./vid/IMG_2690.webm",
+        "creation_date": "2024-08-06T23:58:13.000000Z",
         "location": null
     }
 ]
