@@ -115,7 +115,7 @@ def get_creation_data():
 
                 if lat and lon:
                     # check if lat and lon are within polygon
-                    poly = 'polygon_coordinates.json'
+                    poly = 'scripts/polygon_coordinates.json'
                     formatted_data = json.dumps([{
                         'latitude': lat,
                         'longitude': lon
